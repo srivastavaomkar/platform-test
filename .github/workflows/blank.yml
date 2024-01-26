@@ -27,7 +27,7 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Build
-        run: echo build
+        run: echo build; echo ${{ secrets.DOCKER_REPO_URL }}
 
       # build and push docker image for platform test app
       - name: Build and push Docker image

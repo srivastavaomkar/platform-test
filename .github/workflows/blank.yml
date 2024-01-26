@@ -30,13 +30,9 @@ jobs:
         run: echo build
 
       # build and push docker image for platform test app
-      - name: Build and push docker image to docker hub
-        uses: docker/build-push-action@v2
-        with:
-          context: ./
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-          dockerfile: ./dockerfile
-          registry: https://hub.docker.com/repository/docker
-          repository: srivastavaomkar34/platform-test
-          tag_with_ref: true
+      - name: Build and push Docker image
+        run: |
+          docker build -t platform-test .
+          docker tag platform-test:latest ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io    
+          docker push ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest

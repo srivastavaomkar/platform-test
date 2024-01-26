@@ -31,7 +31,7 @@ jobs:
 
       # build and push docker image for platform test app
       - name: Build and push docker image to docker hub
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           context: ./
           username: ${{ secrets.DOCKER_USERNAME }}

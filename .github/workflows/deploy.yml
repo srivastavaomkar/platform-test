@@ -1,5 +1,5 @@
 # This is a deploy workflow to help you get started with Actions
-name: Deploy using Azure ARM
+name: Deploy using Azure ARM with Azure Free trial (it does not have subscription id)
 
 # Controls when the workflow will run
 on:
@@ -16,18 +16,9 @@ jobs:
       - uses: actions/checkout@main
 
         # Log into Azure
-      - uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - name: Run azure/login@v1
+        run: echo with free trial, we do get subscription id so it will not login
 
         # Deploy ARM template
       - name: Run ARM deploy
-        uses: azure/arm-deploy@v1
-        with:
-          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
-          resourceGroupName: ${{ secrets.AZURE_RG }}
-          template: ./azuredeploy.json
-          parameters: parameters.json storageAccountType=Standard_LRS
-
-        # output containerName variable from template
-      - run: echo ${{ steps.deploy.outputs.containerName }}
+        run: echo For now used azuredeploy.json ARM template under .github/workflow directory in Azure portal.

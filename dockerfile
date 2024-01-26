@@ -2,7 +2,7 @@
 FROM node:lts-alpine
 # working directory in the container
 WORKDIR /app
-# for now we do not have any dependencies or files to copy so skipped
+COPY app/detect.js .
 # exposed the port where app runs in nodejs
 EXPOSE 3000
 # command to run your Node.js application

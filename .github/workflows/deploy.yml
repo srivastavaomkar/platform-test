@@ -27,7 +27,7 @@ jobs:
           subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
           resourceGroupName: ${{ secrets.AZURE_RG }}
           template: ./azuredeploy.json
-          parameters: webAppName=platform-cr2024 acrName=platformcr2024 acrImage=srivastavaomkar34 acrTag=platform-test storageAccountType=Standard_LRS
+          parameters: parameters.json storageAccountType=Standard_LRS
 
         # output containerName variable from template
       - run: echo ${{ steps.deploy.outputs.containerName }}

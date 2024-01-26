@@ -1,0 +1,33 @@
+# This is a deploy workflow to help you get started with Actions
+name: Deploy using Azure ARM
+
+# Controls when the workflow will run
+on:
+  push:
+    branches: [ "release" ]
+  pull_request:
+    branches: [ "release" ]
+jobs:
+    build-and-deploy:
+      runs-on: ubuntu-latest
+      steps:
+
+        # Checkout code
+      - uses: actions/checkout@main
+
+        # Log into Azure
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        # Deploy ARM template
+      - name: Run ARM deploy
+        uses: azure/arm-deploy@v1
+        with:
+          subscriptionId: ${{ secrets.AZURE_SUBSCRIPTION }}
+          resourceGroupName: ${{ secrets.AZURE_RG }}
+          template: ./azuredeploy.json
+          parameters: webAppName=platform-cr2024 acrName=platformcr2024 acrImage=srivastavaomkar34 acrTag=platform-test storageAccountType=Standard_LRS
+
+        # output containerName variable from template
+      - run: echo ${{ steps.deploy.outputs.containerName }}

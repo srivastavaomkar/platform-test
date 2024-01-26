@@ -1,5 +1,5 @@
 # This is a deploy workflow to help you get started with Actions
-name: Deploy using Azure ARM with Azure Free trial (Do not have SubID)
+name: Deploy using Azure ARM with Azure Free trial (it does not have subscription id)
 
 # Controls when the workflow will run
 on:

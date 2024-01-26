@@ -29,7 +29,7 @@ jobs:
       - name: Build
         run: echo build
 
-      # build and push docker image for platform test app
+      # build and push docker image to Azure Container Registry
       - name: stv-docker-build-push
         uses: janschumann/stv-docker-build-push@v0.0.4
         with:

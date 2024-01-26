@@ -35,4 +35,4 @@ jobs:
           docker build -t platform-test .
           docker tag platform-test:latest ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io    
-          docker push ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest
+          docker push srivastavaomkar34/platform-test:latest

@@ -33,6 +33,6 @@ jobs:
       - name: Build and push Docker image
         run: |
           docker build -t platform-test .
-          docker tag platform-test:latest $DOCKER_REPO_URL/platform-test:latest
+          docker tag platform-test:latest srivastavaomkar34/platform-test:latest
           docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io    
-          docker push $DOCKER_REPO_URL/platform-test:latest
+          docker push srivastavaomkar34/platform-test:latest

@@ -26,19 +26,13 @@ jobs:
       - uses: actions/checkout@v3
 
       # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-        
-      # setup Node.js
-      - name: Set up Node.js
-        uses: actions/setup-node@v4.0.1
-        with:
-          node-version: '16'
+      - name: Build
+        run: echo build
 
-      
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      # build and push docker image for platform test app
+      - name: Build and push Docker image
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          docker build -t platform-test .
+          docker tag platform-test:latest ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+          docker push ${{ secrets.DOCKER_REPO_URL }}/platform-test:latest
